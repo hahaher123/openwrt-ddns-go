@@ -12,7 +12,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ddns-go
 PKG_VERSION:=6.17.7
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/jeessy2/ddns-go/archive/refs/tags/
@@ -61,9 +61,10 @@ define Package/ddns-go/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ddns-go $(1)/usr/bin/ddns-go
-	$(INSTALL_DIR) $(1)/etc/init.d $(1)/etc/config $(1)/etc/ddns-go $(1)/lib/upgrade/keep.d
+	$(INSTALL_DIR) $(1)/etc/init.d $(1)/etc/config $(1)/etc/ddns-go $(1)/etc/uci-defaults $(1)/lib/upgrade/keep.d
 	$(INSTALL_BIN) $(CURDIR)/root/etc/init.d/ddns-go $(1)/etc/init.d/ddns-go
 	$(INSTALL_CONF) $(CURDIR)/root/etc/config/ddns-go $(1)/etc/config/ddns-go
+	$(INSTALL_BIN) $(CURDIR)/root/etc/uci-defaults/ddns-go-user $(1)/etc/uci-defaults/ddns-go-user
 	$(INSTALL_DATA) $(CURDIR)/files/ddns-go.keep $(1)/lib/upgrade/keep.d/ddns-go
 endef
 
