@@ -1,0 +1,6 @@
+artifacts/
+dist/
+*.apk
+reports/
+__pycache__/
+*.pyc

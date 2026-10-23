@@ -1,0 +1,29 @@
+name: 手动清理旧 Release
+
+# 只保留最新 N 个 Release（默认 5）。build.yml 每次发布后会自动清理，
+# 本 workflow 仅用于单独补跑（例如自动清理有告警时）。
+# 只删 Release，不删 git tag —— tag 是 build.yml 幂等闸门与 Release 正文
+# 「相对上一次发布」的锚点。
+on:
+  workflow_dispatch:
+    inputs:
+      keep:
+        description: '保留最新多少个 Release'
+        required: false
+        default: '5'
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source tree
+        uses: actions/checkout@v6
+
+      - name: Prune
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KEEP_RELEASES: ${{ inputs.keep }}
+        run: bash .ci/prune-releases.sh

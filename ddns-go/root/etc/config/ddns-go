@@ -1,0 +1,5 @@
+config ddns-go 'main'
+	option enabled '1'
+	option listen ':9876'
+	option interval '300'
+#	option dns ''

@@ -1,0 +1,35 @@
+#!/bin/sh /etc/rc.common
+
+USE_PROCD=1
+START=99
+
+start_service() {
+	local enabled listen interval dns
+
+	config_load ddns-go
+	config_get_bool enabled main enabled 1
+	[ "$enabled" = 1 ] || return 0
+
+	mkdir -p /etc/ddns-go
+
+	local args=""
+	config_get listen main listen ":9876"
+	[ -n "$listen" ] && args="$args -l $listen"
+
+	config_get interval main interval "300"
+	[ -n "$interval" ] && args="$args -f $interval"
+
+	config_get dns main dns ""
+	[ -n "$dns" ] && args="$args -dns $dns"
+
+	procd_open_instance
+	procd_set_param command /usr/bin/ddns-go -c /etc/ddns-go/ddns-go.yaml $args
+	procd_set_param stdout 1
+	procd_set_param stderr 1
+	procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-0}
+	procd_close_instance
+}
+
+service_triggers() {
+	procd_add_reload_trigger "ddns-go"
+}
