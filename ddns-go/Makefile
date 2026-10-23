@@ -14,7 +14,7 @@ PKG_NAME:=ddns-go
 PKG_VERSION:=6.17.7
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-v$(PKG_VERSION).tar.gz
+PKG_SOURCE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/jeessy2/ddns-go/archive/refs/tags/
 PKG_HASH:=f7001004e092d9641aad5a94158e0b4cae4a53a7f5c7d96d5c6af3d246c56fcc
 
