@@ -126,8 +126,8 @@ jobs:
             echo "FULL=${FULL}"
             echo "TAG=${TAG}"
             echo "TITLE=ddns-go ${FULL}"
-            # apk 元数据里的版本串是 PKG_VERSION-PKG_RELEASE（OpenWrt 约定）
-            echo "APK_VERSION=${VER}-${REL}"
+            # apk 元数据里的版本串是 PKG_VERSION-rPKG_RELEASE（实测 PKG_RELEASE=1 → "6.17.7-r1"）
+            echo "APK_VERSION=${VER}-r${REL}"
           } >> $GITHUB_ENV
 
       - name: Generate build keys
