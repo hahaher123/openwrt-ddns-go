@@ -1,0 +1,14 @@
+#!/bin/sh
+# 确保 procd 降权所需的 ddns-go 用户存在（已存在则不动）。
+
+grep -q '^ddns-go:' /etc/passwd && exit 0
+
+uid=499
+while grep -q "^[^:]*:[^:]*:$uid:" /etc/passwd; do
+	uid=$((uid + 1))
+done
+
+grep -q '^ddns-go:' /etc/group || echo "ddns-go:x:$uid:" >> /etc/group
+echo "ddns-go:x:$uid:$uid:ddns-go:/var/run/ddns-go:/bin/false" >> /etc/passwd
+
+exit 0
