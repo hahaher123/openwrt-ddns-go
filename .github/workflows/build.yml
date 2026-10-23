@@ -95,7 +95,7 @@ jobs:
       # 构建用的 OpenWrt 发行版：决定 SDK 镜像 tag（<arch>-<ver>），跟随主线
       OPENWRT_VERSION: '25.12.6'
       # 本仓库被挂载为 SDK 的一个 feed，此名即 /feed 的挂载源名
-      SDK_FEEDNAME: ddns-go
+      SDK_FEEDNAME: ddns_go
       SDK_PACKAGES: ddns-go
 
     steps:
