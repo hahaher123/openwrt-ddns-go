@@ -26,13 +26,18 @@ PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+
+# GO_PKG 系列变量必须先于 include golang-package.mk 定义：
+# 它的 Build/Compile 接线在 include 时按 ifneq ($(GO_PKG),) 求值，
+# 后定义会让接线整块跳过（构建会退化成 make 上游自带 Makefile）。
 
 # module 路径带 /v6 主版本后缀；go install 产出二进制时会剥掉它，
 # 产物名是 ddns-go（Go >= 1.18 的行为）。
 GO_PKG:=github.com/jeessy2/ddns-go/v6
 GO_PKG_BUILD_PKG:=github.com/jeessy2/ddns-go/v6
 GO_PKG_LDFLAGS_X:=main.version=v$(PKG_VERSION)
+
+include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
 define Package/ddns-go
   SECTION:=net
