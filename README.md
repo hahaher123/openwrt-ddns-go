@@ -6,9 +6,11 @@
 
 本包是 [sirpdboy/luci-app-ddns-go](https://github.com/sirpdboy/luci-app-ddns-go) 的**内核替换包**：该 LuCI 应用的 `LUCI_DEPENDS:=+ddns-go`，而本包的包名就是 `ddns-go`，所以装好本包后它的依赖即被满足，不会再拉它自带的旧内核。UCI 契约（段类型 `basic`）与它完全一致，LuCI 写入的配置原样生效。
 
+配套 LuCI 前端使用自建 fork [hahaher123/luci-app-ddns-go](https://github.com/hahaher123/luci-app-ddns-go)（基于 sirpdboy 版的**自用修改**，声明见该仓库 README）：https 环境下 LuCI 内嵌面板改为同源反代 `/ddns-go/`（包内自带 nginx locations，装上即生效，http/https 自适应），并出 noarch 单份 apk。内核仍由本仓库提供。
+
 | 组件 | 适配范围 | 链接 |
 | --- | --- | --- |
-| LuCI 应用 `luci-app-ddns-go`（sirpdboy 版） | 1.6.x（依赖名 `ddns-go` 一致即可） | [仓库](https://github.com/sirpdboy/luci-app-ddns-go) · [Releases](https://github.com/sirpdboy/luci-app-ddns-go/releases/latest) |
+| LuCI 应用 `luci-app-ddns-go` | 1.6.8-r20261030 及以后（依赖名 `ddns-go` 一致即可） | [自建 fork](https://github.com/hahaher123/luci-app-ddns-go) · [Releases](https://github.com/hahaher123/luci-app-ddns-go/releases/latest) ·（上游 [sirpdboy](https://github.com/sirpdboy/luci-app-ddns-go)） |
 | 上游程序 ddns-go | 跟随上游 tag，本包编译 6.17.7 | [jeessy2/ddns-go](https://github.com/jeessy2/ddns-go/releases) |
 | 本包 | 见本仓库 Release | [Releases](https://github.com/hahaher123/openwrt-ddns-go/releases/latest) |
 | 构建环境 | 官方 SDK 25.12.6（apk-tools 3） | [openwrt/openwrt](https://github.com/openwrt/openwrt) |
