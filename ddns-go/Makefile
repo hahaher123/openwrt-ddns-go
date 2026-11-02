@@ -44,7 +44,7 @@ define Package/ddns-go
   CATEGORY:=Network
   TITLE:=Dynamic DNS client with web UI (ddns-go)
   URL:=https://github.com/jeessy2/ddns-go
-  DEPENDS:=+ca-bundle
+  DEPENDS:=+ca-bundle +bash
 endef
 
 define Package/ddns-go/description

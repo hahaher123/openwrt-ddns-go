@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # 确保 procd 降权所需的 ddns-go 用户存在（已存在则不动）。
 
 grep -q '^ddns-go:' /etc/passwd && exit 0
