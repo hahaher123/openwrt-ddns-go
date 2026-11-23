@@ -11,12 +11,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ddns-go
-PKG_VERSION:=6.17.9
+PKG_VERSION:=6.18.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/jeessy2/ddns-go/archive/refs/tags/
-PKG_HASH:=86899490c9563a9609aa297080d45ce1d2fba871c23e746b26290086ac53cf50
+PKG_HASH:=9bb699819cd40ec17dae986ae58b2c87bc18c678786c3b2d20bcdc8a8917eac0
 
 PKG_MAINTAINER:=hahaher123
 PKG_LICENSE:=MIT
